@@ -1,53 +1,114 @@
 "use client";
 import { useState } from 'react';
 
-const AdditionForm = () => {
-    const [num1, setNum1] = useState('');
-    const [num2, setNum2] = useState('');
-    const [result, setResult] = useState('');
+const Calculator = () => {
+    const [inputan, setinputan] = useState('');
+    const [hasil, sethasil] = useState('');
 
-    const handleAddition = () => {
-        const sum = Number(num1) + Number(num2);
-        setResult(sum.toString());
+    const handleklik = (value: string) => {
+        setinputan((previnput) => previnput + value);
     };
+    const handleHasil = () => {
+        sethasil(eval(inputan).toString());
+    };
+    const reset = () => {
+        setinputan('');
+        sethasil('');
+    };
+
     return (
-        <div>
-            <div className='w-full h-screen px-52 py-24'>
-                <div className='flex w-4/12 h-full bg-slate-500 shadow-xl rounded-xl px-8 py-12'>
-                    <div>
-                        <input
-                            className='w-7 h-7'
-                            type="number"
-                            value={num1}
-                            onChange={(e) => setNum1(e.target.value)}
-                        />
+        <div className='w-full h-screen px-52 py-24'>
+            <div className='flex w-full h-[350px] '>
+                <div className='px-12 py-8 bg-slate-200 rounded-md shadow-xl '>
+                    <div className='w-14 h-7'>
+                        <input type="text" value={inputan} readOnly />
                     </div>
-                    <span className='text-white font-semibold'> + </span>
-                    <div>
-                        <input
-                            className='w-7 h-7'
-                            type="number"
-                            value={num2}
-                            onChange={(e) => setNum2(e.target.value)}
-                        />
-                    </div>
-                    <div className='pl-1'>
-                        <button className='bg-slate-300  shadow-xl px-2  text-xl font-semibold text-white'
-                            onClick={handleAddition}>
-                            =
-                        </button>
-                    </div>
-                    <div className='pl-1'>
-                        <label className='text-white'>
-                            {result !== null && <div> <a className='text-xl font-semibold'>Result: {result}</a></div>}
-                        </label>
+                    <div className='flex gap-2 pt-1'>
+                        <button
+                            onClick={() => handleklik('7')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            7</button>
+                        <button
+                            onClick={() => handleklik('8')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            8</button>
+                        <button
+                            onClick={() => handleklik('9')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            9</button>
+                        <button
+                            onClick={() => handleklik('/')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
 
+                            /</button>
                     </div>
 
+                    <div className='flex gap-2 pt-1'>
+                        <button
+                            onClick={() => handleklik('4')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            4</button>
+                        <button
+                            onClick={() => handleklik('5')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            5</button>
+                        <button
+                            onClick={() => handleklik('6')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            6</button>
+                        <button
+                            onClick={() => handleklik('*')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            *</button>
+                    </div>
+                    <div className='flex gap-2 pt-1'>
+                        <button
+                            onClick={() => handleklik('1')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            1</button>
+                        <button
+                            onClick={() => handleklik('2')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            2</button>
+                        <button
+                            onClick={() => handleklik('3')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            3</button>
+                        <button
+                            onClick={() => handleklik('-')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            -</button>
+                    </div>
+                    <div className='flex gap-2 pt-1'>
+                        <button
+                            onClick={() => handleklik('0')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            0</button>
+                        <button
+                            onClick={() => handleklik('.')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            .</button>
+                        <button
+                            onClick={handleHasil}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            =</button>
+                        <button
+                            onClick={() => handleklik('+')}
+                            className='bg-slate-400 px-2 py-2 rounded-lg'>
+                            +</button>
+                        <div>
+                            <button onClick={reset}
+                                className='bg-slate-400 px-2 py-2 rounded-lg shadow-xl pl-2'>
+                                C</button>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="text" value={hasil} readOnly />
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
 
-export default AdditionForm;
+export default Calculator;
